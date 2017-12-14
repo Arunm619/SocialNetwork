@@ -14,23 +14,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ImageView
+                    android:id="@+id/ivclosenext"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_backarrow" />
+
+
                 <TextView
-                    android:id="@+id/username"
+                    android:id="@+id/tvshare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/share"
+                    android:textColor="@color/colorblue"
+                    android:textSize="20sp" />
 
-                    android:text="Arunm619"
-                    android:textColor="@color/colorblack"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="15dp" />
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:id="@+id/profilemenuicon"
-            android:src="@drawable/ic_profilemenu"/>
             </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>

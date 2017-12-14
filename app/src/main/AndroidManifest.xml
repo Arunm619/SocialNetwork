@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.arunsudharsan.socialnetwork">
 <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,6 +25,9 @@
         <activity android:name=".Likes.LikesActivity"/>
         <activity android:name=".Profile.ProfileActivity"/>
         <activity android:name=".Profile.AccountSettingsActivity"/>
+        <activity android:name=".Login.LoginActivity"/>
+        <activity android:name=".Login.RegisterActivity"/>
+        <activity android:name=".Share.NextActivity"/>
 
     </application>
 

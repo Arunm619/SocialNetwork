@@ -1,5 +1,6 @@
 package com.arunsudharsan.socialnetwork.Profile;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,13 +39,22 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        progressBar = findViewById(R.id.profileProgressBar);
-        progressBar.setVisibility(View.GONE);
-        settingupNavigationView();
-        setuptoolbar();
-        setupactivitywidgets();
-        setprofileimage();
-        tempgridsetup();
+      //  progressBar = findViewById(R.id.profileProgressBar);
+        //progressBar.setVisibility(View.GONE);
+    //    settingupNavigationView();
+      //  setuptoolbar();
+        //setupactivitywidgets();
+      //  setprofileimage();
+        //tempgridsetup();
+        init();
+    }
+
+    private void init(){
+        ProfileFragment fragment = new ProfileFragment();
+        android.support.v4.app.FragmentTransaction fragmentTransaction= ProfileActivity.this.getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container,fragment);
+        fragmentTransaction.addToBackStack(getString(R.string.profilefragment));
+        fragmentTransaction.commit();
     }
 
     private void tempgridsetup() {
@@ -102,4 +112,5 @@ gridView.setColumnWidth(imagewidth);
             }
         });
     }
+
 }

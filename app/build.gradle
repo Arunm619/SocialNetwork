@@ -23,6 +23,11 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     //library for coordinator layout and tool bars
+    //library for Firebase
+    //noinspection GradleCompatible
+    implementation 'com.google.firebase:firebase-auth:11.6.2'
+    implementation 'com.google.firebase:firebase-database:11.6.2'
+    implementation 'com.google.firebase:firebase-storage:11.6.2'
     compile 'com.android.support:design:26.1.0'
 //library for Circular Image view
     compile 'de.hdodenhof:circleimageview:2.2.0'
@@ -32,3 +37,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
+
+
+
+
+apply plugin: 'com.google.gms.google-services'
