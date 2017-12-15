@@ -4,7 +4,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-      <!-- Middle Section-->
+        <!-- Middle Section-->
 
 
         <RelativeLayout
@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/relLayout1"
-            android:background="@drawable/white_grey_border_bottom"
+            android:background="@color/colorwhite"
             android:padding="10dp">
 
             <LinearLayout
@@ -32,7 +32,7 @@
                         android:layout_height="80dp"
                         android:src="@drawable/ic_alert"
                         app:civ_border_color="#000"
-                        app:civ_border_width="2dp" />
+                        app:civ_border_width="0.5dp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -56,6 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/relLayout2"
             android:layout_marginBottom="15dp"
+            android:background="@drawable/white_grey_border_bottom"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -65,7 +66,7 @@
                 android:id="@+id/displayname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Arun sudharsan"
+                android:text=""
                 android:textColor="@color/colorblack"
                 android:textSize="16sp"
 
@@ -77,7 +78,7 @@
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="heard you are a palyer"
+                android:text=""
                 android:textColor="@color/colorblack"
                 android:textSize="16sp"
 
@@ -88,7 +89,7 @@
                 android:id="@+id/website"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="arun.com"
+                android:text=""
                 android:textColor="@color/colorblue"
                 android:textSize="16sp"
 
@@ -99,10 +100,11 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/linlayout2">
+            android:layout_below="@id/linlayout2"
+            android:layout_marginBottom="50dp">
 
             <GridView
-                android:id="@+id/gridview"
+                android:id="@+id/gridviewprofilefeed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"

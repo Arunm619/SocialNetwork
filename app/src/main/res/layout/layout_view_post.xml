@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:id="@+id/relLayout1"
+              android:background="@drawable/white_grey_border_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profilephoto"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_heartred"
+                    app:civ_border_color="@color/colorblack"
+                    app:civ_border_width="0.5dp" />
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/profilephoto"
+                    android:text="username"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/viewphotomenuicon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_profilemenu" />
+            </RelativeLayout>
+
+
+            <com.arunsudharsan.socialnetwork.utils.SquareImageView
+                android:id="@+id/post_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relLayout1" />
+
+            <RelativeLayout
+                android:id="@+id/relLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/post_image"
+                android:background="@color/colorwhite">
+
+                <RelativeLayout
+                    android:id="@+id/heartlayout"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorwhite">
+
+                    <ImageView
+                        android:id="@+id/heartwhite"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_heartwhite"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/heartred"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_heartred"
+                        android:visibility="visible" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/speechbubble"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/heartlayout"
+                    android:src="@drawable/ic_speechcomment" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relLayout2"
+                android:layout_marginBottom="50dp"
+                android:background="@color/colorwhite"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/imglikes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Liked By Keerthi.madhu , Kavinlaxman, dr0g1"
+                    android:textColor="@color/colorblack"
+
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/img_caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imglikes"
+                    android:layout_marginTop="15dp"
+                    android:text="Arunm619  I love you #nerd #love"
+                    android:textColor="@color/colorblack"
+
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/img_comments_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/img_caption"
+                    android:layout_marginTop="15dp"
+                    android:text="View All 3 comments"
+                    android:textColor="@color/colorgrey"
+
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/img_time_posted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/img_comments_link"
+                    android:layout_marginTop="15dp"
+                    android:text=""
+                    android:textColor="@color/colorgrey"
+
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <include layout="@layout/layout_bottom_navigation_view" />
+
+</RelativeLayout>

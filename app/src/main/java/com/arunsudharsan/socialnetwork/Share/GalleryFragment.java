@@ -146,9 +146,17 @@ public class GalleryFragment extends Fragment {
         GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview, "file://", imgurls);
         gridview.setAdapter(adapter);
 
-        setimage(imgurls.get(0), ivgalleryimg, "file:/");
-        mselectedimg = imgurls.get(0);
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      try{
+          setimage(imgurls.get(0), ivgalleryimg, "file:/");
+          mselectedimg = imgurls.get(0);
+
+      }
+      catch (ArrayIndexOutOfBoundsException ignored)
+      {
+
+      }
+
+         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 

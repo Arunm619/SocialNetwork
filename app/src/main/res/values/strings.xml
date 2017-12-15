@@ -43,5 +43,20 @@
     <string name="profile_photo">profilephoto</string>
     <string name="returntofragment">return_to_fragment</string>
     <string name="selected_bitmap">selected_bitmap</string>
+    <string name="photo">Photo</string>
+    <string name="activitynumber">activitynumber</string>
+    <string name="view_post_fragment">viewpostfragment</string>
+    <string name="daysago">days ago</string>
+    <string name="today">Today</string>
+    <string name="likes">likes</string>
+    <string name="caption">caption</string>
+    <string name="datecreated">datecreated</string>
+    <string name="userid">userid</string>
+    <string name="tags">tags</string>
+    <string name="imgpath">imgpath</string>
+    <string name="photoid" >photoid</string>
+    <string name="comments">Comments</string>
+    <string name="view_comment_fragment">View Comment</string>
+    <string name="comment">comment</string>
 
 </resources>

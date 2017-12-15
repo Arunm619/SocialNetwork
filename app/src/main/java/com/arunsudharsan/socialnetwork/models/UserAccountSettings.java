@@ -6,16 +6,17 @@ package com.arunsudharsan.socialnetwork.models;
 
 public class UserAccountSettings {
 
-private String description;
-private String displayname;
-private long followers;
-private long following;
+    private String description;
+    private String displayname;
+    private long followers;
+    private long following;
     private long posts;
-private String profilephoto;
-private String username;
-private String website;
+    private String profilephoto;
+    private String username;
+    private String website;
+    private String userid;
 
-    public UserAccountSettings(String description, String displayname, long followers, long following, long posts, String profilephoto, String username, String website) {
+    public UserAccountSettings(String description, String displayname, long followers, long following, long posts, String profilephoto, String username, String website, String userid) {
         this.description = description;
         this.displayname = displayname;
         this.followers = followers;
@@ -24,6 +25,15 @@ private String website;
         this.profilephoto = profilephoto;
         this.username = username;
         this.website = website;
+        this.userid = userid;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public UserAccountSettings() {

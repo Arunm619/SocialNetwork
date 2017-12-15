@@ -1,26 +1,24 @@
 package com.arunsudharsan.socialnetwork.Profile;
 
-import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 
 import com.arunsudharsan.socialnetwork.R;
+import com.arunsudharsan.socialnetwork.utils.ViewCommentsFragment;
+import com.arunsudharsan.socialnetwork.utils.ViewPostFragment;
+import com.arunsudharsan.socialnetwork.models.Photo;
 import com.arunsudharsan.socialnetwork.utils.BottomNavigationViewHelper;
 import com.arunsudharsan.socialnetwork.utils.GridImageAdapter;
-import com.arunsudharsan.socialnetwork.utils.UniversalImageLoader;
 
 import java.util.ArrayList;
 
@@ -28,7 +26,7 @@ import java.util.ArrayList;
  * Created by root on 13/12/17.
  */
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements ProfileFragment.onImagegridSelectedListener,ViewPostFragment.OnCommentThreadSelectedListener {
     private Context mContext = ProfileActivity.this;
     private static final int Activity_num = 4;
     private ProgressBar progressBar;
@@ -39,20 +37,20 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-      //  progressBar = findViewById(R.id.profileProgressBar);
+        //  progressBar = findViewById(R.id.profileProgressBar);
         //progressBar.setVisibility(View.GONE);
-    //    settingupNavigationView();
-      //  setuptoolbar();
+        //    settingupNavigationView();
+        //  setuptoolbar();
         //setupactivitywidgets();
-      //  setprofileimage();
+        //  setprofileimage();
         //tempgridsetup();
         init();
     }
 
-    private void init(){
+    private void init() {
         ProfileFragment fragment = new ProfileFragment();
-        android.support.v4.app.FragmentTransaction fragmentTransaction= ProfileActivity.this.getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container,fragment);
+        android.support.v4.app.FragmentTransaction fragmentTransaction = ProfileActivity.this.getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container, fragment);
         fragmentTransaction.addToBackStack(getString(R.string.profilefragment));
         fragmentTransaction.commit();
     }
@@ -66,23 +64,12 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void setupimagegrid(ArrayList<String> urls) {
-        GridView gridView = findViewById(R.id.gridview);
+        GridView gridView = findViewById(R.id.gridviewprofilefeed);
         GridImageAdapter adapter = new GridImageAdapter(mContext, R.layout.layout_grid_imageview, "", urls);
         int gridWidth = getResources().getDisplayMetrics().widthPixels;
         int imagewidth = gridWidth / NUM_GRID_COLUMS;
-gridView.setColumnWidth(imagewidth);
+        gridView.setColumnWidth(imagewidth);
         gridView.setAdapter(adapter);
-    }
-
-    private void setupactivitywidgets() {
-        progressBar = findViewById(R.id.profileProgressBar);
-        progressBar.setVisibility(View.GONE);
-        profilephoto = findViewById(R.id.profile_image);
-    }
-
-    private void setprofileimage() {
-        String url = "scontent.fmaa3-1.fna.fbcdn.net/v/t1.0-9/15356598_1802393030089473_486476897344407993_n.jpg?oh=17c4a456b48dce097691941f7f90faef&oe=5AD74B84";
-        UniversalImageLoader.setImage(url, profilephoto, progressBar, "https://");
     }
 
     /*
@@ -91,26 +78,41 @@ gridView.setColumnWidth(imagewidth);
     private void settingupNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavViewBar);
         BottomNavigationViewHelper.removeShiftMode(bottomNavigationView);
-        BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationView);
+        BottomNavigationViewHelper.enableNavigation(mContext, this, bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(Activity_num);
         menuItem.setChecked(true);
     }
 
-    /*
-    *
-    * */
-    private void setuptoolbar() {
-        Toolbar toolbar = findViewById(R.id.ProfileToobar);
-        setSupportActionBar(toolbar);
-        ImageView ivprofilemenu = findViewById(R.id.profilemenuicon);
-        ivprofilemenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(mContext, AccountSettingsActivity.class);
-                startActivity(i);
-            }
-        });
+
+    @Override
+    public void onGridImageselected(Photo photo, int ActivityNumber) {
+
+        ViewPostFragment viewPostFragment = new ViewPostFragment();
+        Bundle args = new Bundle();
+        args.putParcelable(getString(R.string.photo), (Parcelable) photo);
+        args.putInt("activity", ActivityNumber);
+        viewPostFragment.setArguments(args);
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container, viewPostFragment);
+        fragmentTransaction.addToBackStack(getString(R.string.view_post_fragment));
+        fragmentTransaction.commit();
     }
 
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    @Override
+    public void onCommentSelectedThreadListener(Photo photo) {
+        ViewCommentsFragment fragment =  new ViewCommentsFragment();
+        Bundle args = new Bundle();
+         args.putParcelable(getString(R.string.photo),photo);
+         fragment.setArguments(args);
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container, fragment);
+        fragmentTransaction.addToBackStack(getString(R.string.view_comment_fragment));
+        fragmentTransaction.commit();
+    }
 }

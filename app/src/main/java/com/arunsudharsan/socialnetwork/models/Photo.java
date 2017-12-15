@@ -1,27 +1,36 @@
 package com.arunsudharsan.socialnetwork.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.List;
+
 /**
  * Created by root on 14/12/17.
  */
 
-public class Photo {
+public class Photo implements Parcelable {
     private String caption;
     private String datecreated;
     private String imgpath;
     private String photoid;
     private String userid;
     private String tags;
+    private List<Like> likes;
 
-    @Override
-    public String toString() {
-        return "Photo{" +
-                "caption='" + caption + '\'' +
-                ", datecreated='" + datecreated + '\'' +
-                ", imgpath='" + imgpath + '\'' +
-                ", photoid='" + photoid + '\'' +
-                ", userid='" + userid + '\'' +
-                ", tags='" + tags + '\'' +
-                '}';
+    public Photo(String caption, String datecreated, String imgpath, String photoid, String userid, String tags, List<Like> likes) {
+        this.caption = caption;
+        this.datecreated = datecreated;
+        this.imgpath = imgpath;
+        this.photoid = photoid;
+        this.userid = userid;
+        this.tags = tags;
+        this.likes = likes;
+
+
+    }
+
+    public Photo() {
     }
 
     public String getCaption() {
@@ -72,20 +81,36 @@ public class Photo {
         this.tags = tags;
     }
 
-    public Photo(String caption) {
-        this.caption = caption;
+    public List<Like> getLikes() {
+        return likes;
     }
 
-    public Photo() {
+    public void setLikes(List<Like> likes) {
+        this.likes = likes;
     }
 
-    public Photo(String caption, String datecreated, String imgpath, String photoid, String userid, String tags) {
-        this.caption = caption;
-        this.datecreated = datecreated;
-        this.imgpath = imgpath;
-        this.photoid = photoid;
-        this.userid = userid;
-        this.tags = tags;
+    @Override
+    public String toString() {
+        return "Photo{" +
+                "caption='" + caption + '\'' +
+                ", datecreated='" + datecreated + '\'' +
+                ", imgpath='" + imgpath + '\'' +
+                ", photoid='" + photoid + '\'' +
+                ", userid='" + userid + '\'' +
+                ", tags='" + tags + '\'' +
+                ", likes=" + likes +
+                '}';
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
+    }
 }
+
+
