@@ -58,5 +58,10 @@
     <string name="comments">Comments</string>
     <string name="view_comment_fragment">View Comment</string>
     <string name="comment">comment</string>
+    <string name="searchactivity">Search Activity</string>
+    <string name="intent_user">user</string>
+    <string name="view_profile_fragment">View profile fragment</string>
+    <string name="dbfollowers">followers</string>
+    <string name="dbfollowing">following</string>
 
 </resources>

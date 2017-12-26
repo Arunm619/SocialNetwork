@@ -33,4 +33,7 @@ public class UserSettings {
 
         this.user = user;
     }
+
+    public UserSettings() {
+    }
 }

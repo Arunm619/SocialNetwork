@@ -1,6 +1,7 @@
 package com.arunsudharsan.socialnetwork.Profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 
 import com.arunsudharsan.socialnetwork.R;
@@ -19,6 +21,7 @@ import com.arunsudharsan.socialnetwork.utils.ViewPostFragment;
 import com.arunsudharsan.socialnetwork.models.Photo;
 import com.arunsudharsan.socialnetwork.utils.BottomNavigationViewHelper;
 import com.arunsudharsan.socialnetwork.utils.GridImageAdapter;
+import com.arunsudharsan.socialnetwork.utils.ViewProfileFragment;
 
 import java.util.ArrayList;
 
@@ -26,7 +29,7 @@ import java.util.ArrayList;
  * Created by root on 13/12/17.
  */
 
-public class ProfileActivity extends AppCompatActivity implements ProfileFragment.onImagegridSelectedListener,ViewPostFragment.OnCommentThreadSelectedListener {
+public class ProfileActivity extends AppCompatActivity implements ProfileFragment.onImagegridSelectedListener,ViewProfileFragment.onImagegridSelectedListener, ViewPostFragment.OnCommentThreadSelectedListener {
     private Context mContext = ProfileActivity.this;
     private static final int Activity_num = 4;
     private ProgressBar progressBar;
@@ -48,11 +51,35 @@ public class ProfileActivity extends AppCompatActivity implements ProfileFragmen
     }
 
     private void init() {
-        ProfileFragment fragment = new ProfileFragment();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = ProfileActivity.this.getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container, fragment);
-        fragmentTransaction.addToBackStack(getString(R.string.profilefragment));
-        fragmentTransaction.commit();
+        Intent intent = getIntent();
+        if (intent.hasExtra(getString(R.string.callingactivity))) {
+            if (intent.hasExtra(getString(R.string.intent_user))) {
+
+                ViewProfileFragment fragment = new ViewProfileFragment();
+                Bundle args = new Bundle();
+                args.putParcelable(getString(R.string.intent_user), intent.getParcelableExtra(getString(R.string.intent_user)));
+                fragment.setArguments(args);
+
+                android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container, fragment);
+                fragmentTransaction.addToBackStack(getString(R.string.view_profile_fragment));
+                fragmentTransaction.commit();
+            } else {
+                Toast.makeText(mContext, "Something went wrong", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        } else {
+
+
+            ProfileFragment fragment = new ProfileFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = ProfileActivity.this.getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, fragment);
+            fragmentTransaction.addToBackStack(getString(R.string.profilefragment));
+            fragmentTransaction.commit();
+        }
+
     }
 
     private void tempgridsetup() {
@@ -106,10 +133,10 @@ public class ProfileActivity extends AppCompatActivity implements ProfileFragmen
 
     @Override
     public void onCommentSelectedThreadListener(Photo photo) {
-        ViewCommentsFragment fragment =  new ViewCommentsFragment();
+        ViewCommentsFragment fragment = new ViewCommentsFragment();
         Bundle args = new Bundle();
-         args.putParcelable(getString(R.string.photo),photo);
-         fragment.setArguments(args);
+        args.putParcelable(getString(R.string.photo), photo);
+        fragment.setArguments(args);
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.container, fragment);
         fragmentTransaction.addToBackStack(getString(R.string.view_comment_fragment));

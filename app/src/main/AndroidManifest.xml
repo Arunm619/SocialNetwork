@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Search.SearchActivity"/>
+        <activity  android:windowSoftInputMode="adjustResize"   android:name=".Search.SearchActivity"/>
         <activity android:name=".Share.ShareActivity"/>
 
         <activity android:name=".Likes.LikesActivity"/>
@@ -27,7 +27,7 @@
         <activity android:name=".Profile.AccountSettingsActivity"/>
         <activity android:name=".Login.LoginActivity"/>
         <activity android:name=".Login.RegisterActivity"/>
-        <activity android:name=".Share.NextActivity"/>
+        <activity  android:windowSoftInputMode="adjustResize"  android:name=".Share.NextActivity"/>
 
     </application>
 

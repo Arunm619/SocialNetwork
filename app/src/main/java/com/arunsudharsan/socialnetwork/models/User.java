@@ -1,10 +1,13 @@
 package com.arunsudharsan.socialnetwork.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by root on 14/12/17.
  */
 
-public class User {
+public class User  implements Parcelable{
     private String userid;
     private long phonenumber;
     private String email;
@@ -16,6 +19,25 @@ public class User {
         this.email = email;
         this.username = username;
     }
+
+    protected User(Parcel in) {
+        userid = in.readString();
+        phonenumber = in.readLong();
+        email = in.readString();
+        username = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     @Override
     public String toString() {
@@ -61,4 +83,19 @@ public class User {
 
     public User() {
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(userid);
+        parcel.writeLong(phonenumber);
+        parcel.writeString(email);
+        parcel.writeString(username);
+    }
 }
+//data class User(val name: String, val email: String)

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.arunsudharsan.socialnetwork.R;
+import com.arunsudharsan.socialnetwork.models.Comment;
 import com.arunsudharsan.socialnetwork.models.Like;
 import com.arunsudharsan.socialnetwork.models.Photo;
 import com.arunsudharsan.socialnetwork.models.User;
@@ -148,28 +149,48 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot singlesnapshot : dataSnapshot.getChildren()) {
                     //  photos.add(singlesnapshot.getValue(Photo.class));
+                    try {
+                        Photo photo = new Photo();
+                        Map<String, Object> objectMap = (HashMap<String, Object>) singlesnapshot.getValue();
+                        photo.setPhotoid(objectMap.get(getString(R.string.photoid)).toString());
+                        photo.setDatecreated(objectMap.get(getString(R.string.datecreated)).toString());
+                        photo.setUserid(objectMap.get(getString(R.string.userid)).toString());
+                        photo.setTags(objectMap.get(getString(R.string.tags)).toString());
+                        photo.setImgpath(objectMap.get(getString(R.string.imgpath)).toString());
+                        photo.setCaption(objectMap.get(getString(R.string.caption)).toString());
 
-                    Photo photo = new Photo();
-                    Map<String, Object> objectMap = (HashMap<String, Object>) singlesnapshot.getValue();
-                    photo.setPhotoid(objectMap.get(getString(R.string.photoid)).toString());
-                    photo.setDatecreated(objectMap.get(getString(R.string.datecreated)).toString());
-                    photo.setUserid(objectMap.get(getString(R.string.userid)).toString());
-                    photo.setTags(objectMap.get(getString(R.string.tags)).toString());
-                    photo.setImgpath(objectMap.get(getString(R.string.imgpath)).toString());
-                    photo.setCaption(objectMap.get(getString(R.string.caption)).toString());
-                    List<Like> likes = new ArrayList<>();
-                    for (DataSnapshot dataSnapshot1 : singlesnapshot
-                            .child(getString(R.string.likes))
-                            .getChildren()) {
-                        Like like = new Like();
-                        like.setUserid(dataSnapshot1.getValue(Like.class).getUserid());
 
+                        ArrayList<Comment> mcomments = new ArrayList<>();
+                        for (DataSnapshot dataSnapshot1 : singlesnapshot
+                                .child(getString(R.string.comment))
+                                .getChildren()) {
+                            Comment comment = new Comment();
+                            comment.setUserid(dataSnapshot1.getValue(Comment.class).getUserid());
+                            comment.setDatecreated((dataSnapshot1.getValue(Comment.class).getDatecreated()));
+                            comment.setComment((dataSnapshot1.getValue(Comment.class).getComment()));
+                            mcomments.add(comment);
+                        }
+                        photo.setComments(mcomments);
+
+
+                        List<Like> likes = new ArrayList<>();
+                        for (DataSnapshot dataSnapshot1 : singlesnapshot
+                                .child(getString(R.string.likes))
+                                .getChildren()) {
+                            Like like = new Like();
+                            like.setUserid(dataSnapshot1.getValue(Like.class).getUserid());
+
+
+                        }
+
+                        photo.setLikes(likes);
+                        photos.add(photo);
+
+                    } catch (Exception e) {
 
                     }
-
-                    photo.setLikes(likes);
-                    photos.add(photo);
                 }
+
                 //setup Image Grid
                 int gridWidth = getResources().getDisplayMetrics().widthPixels;
                 int imagewidth = gridWidth / NUMGRIDCOLUMNS;
